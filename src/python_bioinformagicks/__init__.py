@@ -7,7 +7,9 @@ __email__ = 'sylvia.michki@gmail.com'
 __version__ = '0.1.0'
 
 from . import tools as tl
+from . import plotting as pl
 
 __all__ = [
     "tl",
+    "pl",
 ]

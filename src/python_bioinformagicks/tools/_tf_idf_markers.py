@@ -36,7 +36,7 @@ def tf_idf_markers(
 
     TODO: make compatible with :code:`scanpy.tl.rank_genes_groups`
     
-    Paramters
+    Parameters
     ---------
     adata: ad.AnnData
         The anndata object for this experiment

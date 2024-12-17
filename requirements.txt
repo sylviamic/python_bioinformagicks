@@ -3,6 +3,7 @@ anndata
 numpy
 pandas
 scipy
+geosketch
 
 pytest
 tox
