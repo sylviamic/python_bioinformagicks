@@ -18,9 +18,8 @@ classifiers = [
   "Development Status :: 4 - Beta",
 ]
 license = {text = "GNU General Public License v3"}
-dependencies = [
-  
-]
+
+dynamic = ["dependencies"]
 
 [project.optional-dependencies]
 dev = [
@@ -31,7 +30,6 @@ dev = [
 ]
 
 [project.urls]
-
 bugs = "https://github.com/sylviamic/python_bioinformagicks/issues"
 changelog = "https://github.com/sylviamic/python_bioinformagicks/blob/master/changelog.md"
 homepage = "https://github.com/sylviamic/python_bioinformagicks"
