@@ -1,0 +1,12 @@
+scanpy
+anndata
+numpy
+pandas
+scipy
+
+pytest
+tox
+build
+twine
+Sphinx
+sphinx-book-theme
