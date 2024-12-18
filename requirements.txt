@@ -4,6 +4,8 @@ numpy
 pandas
 scipy
 geosketch
+gprofiler-official
+
 
 pytest
 tox

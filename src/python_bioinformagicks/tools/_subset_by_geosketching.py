@@ -16,6 +16,11 @@ def subset_by_geosketching(
     exact target cell number, specify `n_cells_to_keep`, which
     will take priority over `frac_cells_to_keep`. 
 
+    References:
+
+    * https://doi.org/10.1016/j.cels.2019.05.003
+    * https://github.com/brianhie/geosketch
+    
     Parameters
     ----------
     adata: ad.AnnData 
