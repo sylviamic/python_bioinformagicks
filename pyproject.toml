@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "python_bioinformagicks"
-version = "0.1.0"
+version = "0.2.0"
 description = "A collection of tools for various bioinformatics tasks."
 readme = "README.rst"
 authors = [
@@ -31,7 +31,7 @@ dev = [
 
 [project.urls]
 bugs = "https://github.com/sylviamic/python_bioinformagicks/issues"
-changelog = "https://github.com/sylviamic/python_bioinformagicks/blob/master/changelog.md"
+changelog = "https://github.com/sylviamic/python_bioinformagicks/blob/master/HISTORY.rst"
 homepage = "https://github.com/sylviamic/python_bioinformagicks"
 
 [tool.setuptools]
@@ -66,4 +66,3 @@ warn_no_return = true
 module = "tests.*"
 allow_untyped_defs = true
 disable_error_code = "attr-defined"
-
