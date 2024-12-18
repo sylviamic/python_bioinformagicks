@@ -4,7 +4,7 @@ when:
 
 steps:
   - name: test
-    image: python:latest
+    image: python:3.12.8
     commands:
       - echo "Testing ..."
       - git clone https://github.com/sylviamic/python_bioinformagicks

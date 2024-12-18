@@ -4,7 +4,7 @@ when:
 
 steps:
   - name: package
-    image: python:latest
+    image: python:3.12.8
     environment:
       PYPI_API_KEY: 
         from_secret: test_pypi_api_key
