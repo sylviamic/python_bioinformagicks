@@ -62,7 +62,7 @@ def scale_by_group(
     which modifies `adata`. 
     '''
     
-    ret = np.zeros(adata.X.shape, dtype=np.float16)
+    ret = np.zeros(adata.X.shape)
     
     for group in adata.obs[groupby].astype("category").cat.categories:
         
@@ -80,7 +80,6 @@ def scale_by_group(
                 layer = layer,
                 copy = True
             ).X, 
-            dtype=np.float16,
         ) 
         
         # calculate parent indices

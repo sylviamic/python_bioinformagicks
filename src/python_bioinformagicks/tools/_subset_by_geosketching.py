@@ -1,6 +1,7 @@
 import anndata as ad
-from geosketch import gs
+import numpy as np
 
+from geosketch import gs
 
 def subset_by_geosketching(
     adata: ad.AnnData, 
@@ -8,7 +9,7 @@ def subset_by_geosketching(
     frac_cells_to_keep: float = 0.33, 
     use_rep: str = "X_pca"
 ):
-    """
+    '''
     Subsamples a single-cell dataset using geometric sketching
     to more fairly represent rare and common cell types
     
@@ -41,19 +42,21 @@ def subset_by_geosketching(
     
     Returns
     -------
-    mask: Anndata object
-        A boolean mask of length len(adata.obs.index) indicating
-        which cells to keep after geosketching. 
+    mask: list[bool]
+        A boolean mask of length `len(adata.obs.index)` where 
+        `True` indicates which cells to keep after geosketching. 
     
-    """
+    '''
     
     n_cells = 0
+    
     if not (n_cells_to_keep is None):
         if ((n_cells_to_keep < len(adata.obs.index)) and (n_cells_to_keep > 0)):
             n_cells = n_cells_to_keep
         else:
             print("[ERROR] n_cells_to_keep specified, but not in range (0, len(adata.obs.index))")
             print("[WARN] defaulting to 33% of cells")
+    
     if (n_cells == 0):
         if ((frac_cells_to_keep >= 1) or (frac_cells_to_keep <= 0)):
             print("[ERROR] frac_cells_to_keep is not in range (0,1)")
@@ -62,6 +65,9 @@ def subset_by_geosketching(
         n_cells = int(frac_cells_to_keep * len(adata.obs.index))
 
     X_orig = adata.obsm[use_rep]
-    mask = gs(X_orig, n_cells, replace=False)
+    mask_idx = gs(X_orig, n_cells, replace=False)
+    
+    mask = np.zeros_like(adata.obs.index, dtype=np.bool_)
+    mask[mask_idx] = True
     
     return mask
