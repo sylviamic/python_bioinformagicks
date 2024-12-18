@@ -76,28 +76,6 @@ def test_subset_by_geosketching(
     assert (0 < np.sum(mask) <= (n_cells_to_keep)) 
 
 
-def test_in_ignore_list(
-    sample_adata,
-):
-    '''
-
-    Testing bim.tl.in_ignore_list
-
-    A few ignorable genes were left in the test
-    AnnData object; make sure they get detected.
-
-    '''
-
-    import numpy as np
-
-    mask = [bim.tl.in_ignore_list(g) for g in sample_adata.var.index]
-    
-    ignored_genes = sample_adata[:, mask].var.index.tolist()
-
-    assert (0 < np.sum(mask) < 200)
-    assert ("mt-Rnr1" in ignored_genes)
-    assert ("C330002G04Rik" in ignored_genes)
-    assert ("Gm29538" in ignored_genes)
 
 
 def test_calc_jasmine_score(

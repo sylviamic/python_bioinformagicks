@@ -17,7 +17,6 @@ Tools:
 * TF-IDF marker gene testing ("quickMarkers"), as in SoupX_
 * JASMINE gene set scoring, as in `Noureen et al.`_
 * Over-representation analyses (ORAs) with gProfiler_
-* Identification of genes often left ignored, like `AW146154`_ 
 * Cell mask generation based on geometric sketching, as in Geosketch_
 * Cell mask generation based on embedding (i.e. UMAP) coordinate bounds
 * Z-standard scaling of gene expression on a per-group basis
@@ -25,6 +24,12 @@ Tools:
 Plotting:
 
 * Split embedding plots based on categorical observations
+* Stacked barplot generation of cell proportions split by group and counts normalized per-batch
+
+Utilities:
+
+* Identification of genes often left ignored, like `AW146154`_ 
+* Combination of categorical columns maintaining specified ordering 
 
 .. _SoupX: https://github.com/constantAmateur/SoupX
 .. _`Noureen et al.`: https://doi.org/10.7554/eLife.71994
