@@ -12,7 +12,7 @@ def get_proportions(
     `outer_col` are also in `inner_col` as
     a fraction of the total items in `outer_col`.
     
-    Paramaters
+    Parameters
     ----------
     df: pd.DataFrame
         The dataframe containing at least the columns

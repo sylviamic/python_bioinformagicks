@@ -4,14 +4,12 @@ when:
 
 steps:
   - name: package
-    image: python:3.12.8
+    image: sylviamic/python_bioinformagicks
     environment:
       PYPI_API_KEY: 
         from_secret: pypi_api_key
     commands:
       - echo "Packaging..."
-      - git clone https://github.com/sylviamic/python_bioinformagicks
       - cd python_bioinformagicks
-      - pip install --index-url http://devpi-server:3141/root/pypi --trusted-host devpi-server --no-cache-dir -r requirements.txt
       - make dist
       - python -m twine upload --username __token__ --password $PYPI_API_KEY --repository pypi --verbose dist/*

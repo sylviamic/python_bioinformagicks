@@ -4,6 +4,17 @@
 Installation
 ============
 
+From pypi
+---------
+
+The latest tagged release can be downloaded from the `pypi repo`_.
+
+
+.. code-block:: console
+
+    $ pip install python-bioinformagicks
+
+
 From sources
 ------------
 
@@ -21,4 +32,5 @@ And install the package in editable format like so:
 
     $ pip install -e .
 
-.. _Github repo: https://github.com/sylviamic/python_bioinformagicks
+.. _`Github repo`: https://github.com/sylviamic/python_bioinformagicks
+.. _`pypi repo`: https://pypi.org/project/python-bioinformagicks/

@@ -24,7 +24,7 @@ def tf_idf_markers(
     dendrogram: bool = False, 
     save_markers: bool = False, 
     return_fig: bool = False,
-    var_key_to_ignore: str = "ignore",
+    var_key_to_ignore: str = None,
     **kwargs
 ):
     """
@@ -90,6 +90,12 @@ def tf_idf_markers(
         scanpy DotPlot object is also returned for 
         further processing/saving.
     
+    References
+    ----------
+
+    * https://github.com/constantAmateur/SoupX
+    * https://doi.org/10.1093/gigascience/giaa151
+    * https://constantamateur.github.io/2020-04-10-scDE
     """
 
     # binarize the gene expression data
@@ -218,13 +224,13 @@ def _bh_correct(
     pvals: np.array (in range [0,1])
         The uncorrected p-values
 
-    Returns:
-    --------
+    Returns
+    -------
 
     adjusted_pvals: np.array (in range [0,1])
         The BH adjusted p-values
-
     """
+
     ranked_pvals = rankdata(pvals)
     adjusted_pvals = pvals * len(pvals) / ranked_pvals
     adjusted_pvals[adjusted_pvals > 1] = 1

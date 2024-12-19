@@ -30,12 +30,12 @@ def scale_by_group(
     groupby: str (default: "celltype")
         The categorical column in `adata.obs`
         containing groups to subset and standard
-        scale within
+        scale within.
     
     layer: str (default: `None`)
         The layer key in `adata.layers` whose 
         values should be scaled (i.e. the starting
-        matrix). If `None`, use :code:`adata.X`
+        matrix). If `None`, use :code:`adata.X`.
     
     zero_center: bool (default: `False`)
         As in :code:`sc.pp.scale`; when `True`, subtract
@@ -47,19 +47,19 @@ def scale_by_group(
         If `True`, return a copy of the resulting
         scaled data matrix. If `False`, modify 
         input `adata` by placing resulting matrix
-        in :code:`adata.layers[scaled_by_ + str(groupby)]`
+        in :code:`adata.layers[scaled_by_ + str(groupby)]`.
     
     Returns
     -------
-    If `zero_center` is `False`, resulting scaled
-    matrix is of type `scipy.sparse.csr_matrix`, else
-    result is of type `np.array` (dense). 
+    If :code:`copy is True`, return the scaled matrix.
     
-    If `copy` is True, return resulting matrix.
-    
-    If `copy` is False, resulting matrix is placed
-    in :code"`adata.layers["scaled_by_" + str(groupby)]`,
-    which modifies `adata`. 
+    If :code:`copy is False`, scaled matrix is placed
+    in :code:`adata.layers["scaled_by_" + str(groupby)]`,
+    which modifies :code:`adata` in-place. 
+
+    If :code:`zero_center is False`, resulting scaled
+    matrix is of type :code:`scipy.sparse.csr_matrix`, else
+    result is of type :code:`np.ndarray` (dense). 
     """
     
     ret = np.zeros(adata.X.shape)

@@ -2,12 +2,7 @@
 python bioinformagicks
 ======================
 
-A collection of tools for various bioinformatics tasks.
-
-Documentation 
--------------
-
-https://python-bioinformagicks.readthedocs.io
+A collection (read: `hodgepodge`) of tools for bioinformatics tasks.
 
 Features
 --------
@@ -23,8 +18,9 @@ Tools:
 
 Plotting:
 
-* Split embedding plots based on categorical observations
+* Split embedding plot generation based on categorical observations
 * Stacked barplot generation of cell proportions split by group and counts normalized per-batch
+* Barplot generation for gProfiler_ ORA results, with optional term fold enrichment sorting
 
 Utilities:
 
@@ -36,6 +32,18 @@ Utilities:
 .. _gProfiler: https://biit.cs.ut.ee/gprofiler/gost
 .. _`AW146154`: https://www.ncbi.nlm.nih.gov/gene/101835
 .. _Geosketch: https://doi.org/10.1016/j.cels.2019.05.003
+
+Installation
+------------
+
+.. code-block:: console
+
+    $ pip install python-bioinformagicks
+
+Documentation 
+-------------
+
+https://python-bioinformagicks.readthedocs.io
 
 Credits
 -------

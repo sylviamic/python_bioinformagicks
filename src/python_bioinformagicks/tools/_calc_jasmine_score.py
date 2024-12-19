@@ -48,12 +48,22 @@ def calc_jasmine_score(
         1D array of len(adata.obs.index) of gene set 
         scores, min-max normalized to [0,1]. 
 
-    References: 
-    -----------
+    References
+    ----------
 
-    https://doi.org/10.7554/eLife.71994
+    * https://doi.org/10.7554/eLife.71994
     
-    https://github.com/NNoureen/JASMINE
+    * https://github.com/NNoureen/JASMINE
+
+    Usage
+    -----
+    .. code-block::
+
+        >>> genes_of_interest = ["Sftpc", "Lamp3", "Napsa"]
+        >>> adata.obs["AT2 score"] = calc_jasmine_score(adata, genes_of_interest)
+        >>> adata.obs.groupby("celltype")["AT2 score"].mean().idxmax()
+        'AT2'
+
     """
 
     # get the normalized mean rank (NMR)

@@ -37,7 +37,7 @@ def plot_split_embedding(
         If True, only the plots in the last column (right-side) 
         will have a legend. Useful to avoid crowding, however may be
         problematic when plotting categoricals where categories are
-        missingin the subsetted data used for the final column, 
+        missing in the subsetted data used for the final column, 
         as those missing categories will not appear in the legend.
         
     Returns
