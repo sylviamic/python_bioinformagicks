@@ -16,5 +16,4 @@ steps:
     image: sylviamic/python_bioinformagicks
     commands:
       - echo "Testing ..."
-      - cd python_bioinformagicks
       - make test
