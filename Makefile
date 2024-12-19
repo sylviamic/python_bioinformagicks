@@ -87,4 +87,4 @@ install: clean ## install the package to the active Python's site-packages
 	pip install -e .
 
 install-ci: clean ## install the package to the active Python's site-packages
-	pip install --index-url devpi-server:3141/root/pypi --no-cache-dir -e .
+	pip install --index-url http://devpi-server:3141/root/pypi --no-cache-dir -e .
