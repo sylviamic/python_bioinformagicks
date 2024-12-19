@@ -9,7 +9,7 @@ def subset_by_geosketching(
     frac_cells_to_keep: float = 0.33, 
     use_rep: str = "X_pca"
 ):
-    '''
+    """
     Subsamples a single-cell dataset using geometric sketching
     to more fairly represent rare and common cell types
     
@@ -46,7 +46,7 @@ def subset_by_geosketching(
         A boolean mask of length `len(adata.obs.index)` where 
         `True` indicates which cells to keep after geosketching. 
     
-    '''
+    """
     
     n_cells = 0
     

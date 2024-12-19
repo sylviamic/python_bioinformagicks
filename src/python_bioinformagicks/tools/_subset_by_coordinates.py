@@ -7,7 +7,7 @@ def subset_by_coordinates(
     y_bounds: list = [],
     use_rep: str = "X_umap"
 ):
-    '''
+    """
     Given a bounding box in 2D space,
     return a cell mask containing only
     cells inside of that box.
@@ -48,7 +48,7 @@ def subset_by_coordinates(
         The boolean mask on length adata.n_obs
         where cells within the bounding area 
         are given value True, else False.
-    '''
+    """
     
     if not (x_bounds or y_bounds):
         print("At least one of x_bounds, y_bounds must "

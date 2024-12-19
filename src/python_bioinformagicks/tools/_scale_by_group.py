@@ -11,7 +11,7 @@ def scale_by_group(
     copy: bool = True,
     zero_center: bool = False,
 ):
-    '''
+    """
     Performs z-standard scaling, similar to
     :code:`sc.pp.scale`, but for each category
     in :code:`adata.obs[groupby]` independently. 
@@ -60,7 +60,7 @@ def scale_by_group(
     If `copy` is False, resulting matrix is placed
     in :code"`adata.layers["scaled_by_" + str(groupby)]`,
     which modifies `adata`. 
-    '''
+    """
     
     ret = np.zeros(adata.X.shape)
     

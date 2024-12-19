@@ -1,6 +1,6 @@
-'''
+"""
 Top-level package for python bioinformagicks.
-'''
+"""
 
 __author__ = """Sylvia N. Michki"""
 __email__ = 'sylvia.michki@gmail.com'

@@ -9,22 +9,17 @@ def calc_jasmine_score(
     recalculate_rank: bool = False,
     save_rank: bool = True
 ): 
-    '''
+    """
     Calculates the JASMINE gene set score,
     originally proposed in Noureen et al. 2022.
 
     Shows less (but non-zero) dependence on gene 
     detection rate than alternative methods for gene
     set scoring in scRNA-seq data.
-
-    References: 
-    
-    https://doi.org/10.7554/eLife.71994
-    
-    https://github.com/NNoureen/JASMINE
     
     Parameters
     ----------
+
     adata: ad.AnnData
         The AnnData object
 
@@ -53,7 +48,13 @@ def calc_jasmine_score(
         1D array of len(adata.obs.index) of gene set 
         scores, min-max normalized to [0,1]. 
 
-    '''
+    References: 
+    -----------
+
+    https://doi.org/10.7554/eLife.71994
+    
+    https://github.com/NNoureen/JASMINE
+    """
 
     # get the normalized mean rank (NMR)
     NMR = _calc_mean_rank(

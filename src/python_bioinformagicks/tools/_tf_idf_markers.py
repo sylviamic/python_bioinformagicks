@@ -1,8 +1,8 @@
-'''
+"""
 Code for identifying marker genes based on
 term-frequency, inverse-document frequency
 testing (TF-IDF).
-'''
+"""
 
 import scanpy as sc
 import anndata as ad
@@ -27,7 +27,7 @@ def tf_idf_markers(
     var_key_to_ignore: str = "ignore",
     **kwargs
 ):
-    '''
+    """
     Performs term-frequency, inverse-document frequency 
     calculation in order to rank marker genes across
     groups in groupby. This is an alternative to mean expression
@@ -90,7 +90,7 @@ def tf_idf_markers(
         scanpy DotPlot object is also returned for 
         further processing/saving.
     
-    '''
+    """
 
     # binarize the gene expression data
     if ((redo_threshold) 
@@ -137,7 +137,7 @@ def tf_idf_markers(
     if (save_markers):
         adata.uns["TF_IDF_" + groupby] = TF_IDF
     
-    '''
+    """
     Do hypergeometric test to assign p-values to this
     distribution of gene-cluster frequencies.
     M is the total number of objects, 
@@ -150,7 +150,7 @@ def tf_idf_markers(
     of DEGs if we choose at random 12 of the 20 genes, we can 
     initialize a frozen distribution and plot the probability mass function:
     [M, n, N] = [20, 7, 12]
-    '''
+    """
 
     k = TF
     M = n_cells
@@ -208,7 +208,7 @@ def tf_idf_markers(
 def _bh_correct(
     pvals: np.array
 ):
-    '''
+    """
     Perform Benjamini-Hochberg p-value adjustment
     for multiple comparisons.
 
@@ -224,7 +224,7 @@ def _bh_correct(
     adjusted_pvals: np.array (in range [0,1])
         The BH adjusted p-values
 
-    '''
+    """
     ranked_pvals = rankdata(pvals)
     adjusted_pvals = pvals * len(pvals) / ranked_pvals
     adjusted_pvals[adjusted_pvals > 1] = 1

@@ -6,7 +6,7 @@ def make_combined_categorical_column(
     col_b: str, 
     category_order: list[str] =None
 ):
-    '''
+    """
     Given a dataframe `df` and two column labels,
     generates a new categorical series as a combination
     of the two columns. 
@@ -40,9 +40,10 @@ def make_combined_categorical_column(
     
     new_col: pd.Series
         The new categorical series
-    '''
+    """
         
-    new_col = (df[col_a].astype(str) + " " + df[col_b].astype(str)).astype("category")
+    new_col = df[col_a].astype(str) + " " + df[col_b].astype(str)
+    new_col = new_col.astype("category")
     
     try:
         if (category_order):

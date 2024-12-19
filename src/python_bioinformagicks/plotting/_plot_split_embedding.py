@@ -1,12 +1,14 @@
 import scanpy as sc
 import anndata as ad
 
-def split_plot_embedding(
+import matplotlib.pyplot as plt
+
+def plot_split_embedding(
     adata: ad.AnnData, 
     groupby: str, 
     color: list[str] | str, 
     use_rep: str = "X_umap",
-    last_legend_only: bool =True, 
+    last_legend_only: bool = True, 
     **kwargs
 ):
     """
@@ -54,18 +56,22 @@ def split_plot_embedding(
         print("[ERROR] " + str(use_rep) + " not in adata.obsm")
         return None
 
+    groupby_col = adata.obs[groupby]
+    if ("cat" not in groupby_col.dtype.name):
+        groupby_col = groupby_col.astype("category")
+
     # determine which plotting function to use
     # TODO: switch to sc.pl.embedding
-    '''
+    """
     plot_func_dict = {
         "X_umap":    sc.pl.umap,
         "X_tsne":    sc.pl.tnse,
         "X_pca":     sc.pl.pca,
         "X_diffmap": sc.pl.diffmap
     }
-    '''
+    """
 
-    n_factor_levels = len(adata.obs[groupby].cat.categories)
+    n_factor_levels = len(groupby_col.cat.categories)
     n_plots_per_factor = len(color)
     plot_size = 4
     
@@ -75,7 +81,7 @@ def split_plot_embedding(
         figsize=[plot_size * x for x in [n_factor_levels, n_plots_per_factor]]
     )
 
-    for j,f in enumerate(adata.obs[groupby].cat.categories):
+    for j,f in enumerate(groupby_col.cat.categories):
         a = adata[adata.obs[groupby]==f]
         for i,x in enumerate(color):
             if (len(color) == 1):

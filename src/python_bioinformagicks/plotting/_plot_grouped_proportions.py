@@ -15,7 +15,7 @@ def plot_grouped_proportions(
     stacked: bool = True
 ):
     
-    '''
+    """
     Generates (stacked) bar plots of item (cell) counts 
     and proportions, with each bar representing how many
     items are in each group of "factor_to_plot"
@@ -64,7 +64,7 @@ def plot_grouped_proportions(
         Contains two axes, one with item counts per 
         batch and one with proportions. 
     
-    '''
+    """
     
     titles = ["# per " + split_by, "proportions"]
     
