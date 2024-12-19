@@ -12,6 +12,6 @@ steps:
       - echo "Packaging..."
       - git clone https://github.com/sylviamic/python_bioinformagicks
       - cd python_bioinformagicks
-      - pip install --index-url devpi-server:3141 --no-cache-dir -r requirements.txt
+      - pip install --index-url devpi-server:3141/root/pypi --no-cache-dir -r requirements.txt
       - make dist
       - python -m twine upload --username __token__ --password $PYPI_API_KEY --repository pypi --verbose dist/*
