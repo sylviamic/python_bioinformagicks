@@ -1,20 +1,9 @@
 import anndata as ad
 import scanpy as sc
-#sc.set_figure_params(
-#    dpi=96,
-#    dpi_save=300,
-#    color_map='viridis'
-#)
 
 import numpy as np
 
 import matplotlib.pyplot as plt
-#from matplotlib import rcParams
-#rcParams["image.aspect"]     = "equal"
-#rcParams['patch.edgecolor']  = 'black'
-#rcParams['font.family']      = "Arial"
-#rcParams['figure.facecolor'] = "white"
-#rcParams['svg.fonttype']     = 'none'
 
 from ..utilities._get_proportions import get_proportions
 

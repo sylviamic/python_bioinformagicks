@@ -9,6 +9,7 @@ Subpackages
 
    python_bioinformagicks.plotting
    python_bioinformagicks.tools
+   python_bioinformagicks.utilities
 
 Module contents
 ---------------

@@ -85,3 +85,6 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	pip install -e .
+
+install-ci: clean ## install the package to the active Python's site-packages
+	pip install --index-url devpi-server:3141 --no-cache-dir -e .

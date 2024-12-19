@@ -9,5 +9,5 @@ steps:
       - echo "Testing ..."
       - git clone https://github.com/sylviamic/python_bioinformagicks
       - cd python_bioinformagicks
-      - make install
+      - make install-ci
       - make test
