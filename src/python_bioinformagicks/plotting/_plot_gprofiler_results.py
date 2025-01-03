@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib
 
 from natsort import natsorted
 
@@ -90,7 +91,7 @@ def plot_gprofiler_results(
         # clean up term names for compactness
         max_len = 50
         if (source == "TF"):
-            d["name"] = d["name"].apply(lambda x: _shorten_TF_term(x))
+            d["name"] = d["name"].apply(lambda x: _shorten_TF_term(x, max_len))
         elif ("GO:" in source):
             d["name"] = d["name"].apply(lambda x: _shorten_GO_term(x))
         
@@ -108,7 +109,6 @@ def plot_gprofiler_results(
         
         # generate a pleasant colormap to represent term fold enrichment
         color_facet = "FE"
-        cmap_name = cmap
 
         new_cmap = truncate_colormap(
             matplotlib.cm.get_cmap(cmap),
@@ -120,7 +120,7 @@ def plot_gprofiler_results(
         cvals = [new_cmap(v) for v in vals]
 
         # draw the bars
-        rects = axs[i].barh(
+        axs[i].barh(
             data["name"], 
             data["-log10(FDR)"], 
             color=cvals,
@@ -155,10 +155,10 @@ def plot_gprofiler_results(
 
         # set the font sizes to something appropriate
         # TODO: is there a better way to parametrize this?
-        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] 
-                    + ax.get_xticklabels()
-                    + ax.get_yticklabels()
-                    + [cbar.ax.title, ax.xaxis.label, ax.yaxis.label]
+        for item in ([axs[i].title, axs[i].xaxis.label, axs[i].yaxis.label] 
+                    + axs[i].get_xticklabels()
+                    + axs[i].get_yticklabels()
+                    + [cbar.ax.title, axs[i].xaxis.label, axs[i].yaxis.label]
                     + cbar.ax.get_xticklabels()
                     + cbar.ax.get_yticklabels()):
             item.set_fontsize(20) 
@@ -172,7 +172,7 @@ def _shorten_GO_term(x):
     ret = ret.replace("egulation", "eg.")
     return ret
 
-def _shorten_TF_term(x):
+def _shorten_TF_term(x, max_len):
     ret = x.split("Factor: ")[1]
     ret = ret.replace(";","")
     ret = ret.rjust(max_len)

@@ -66,7 +66,7 @@ def get_grouped_categories(
         a = df[df[groupby] == group]
         
         # remove categories not found in group
-        cleaned_groupby_col = a[column_to_map].cat.remove_unused_categories()
+        cleaned_groupby_col = a[column_to_reorder].cat.remove_unused_categories()
 
         # optional sort
         if (sort):

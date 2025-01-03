@@ -52,7 +52,7 @@ def plot_split_embedding(
         print("[ERROR] color must be str or list of str")
         return None
     
-    if not (use_rep in adata.obsm):
+    if (use_rep not in adata.obsm):
         print("[ERROR] " + str(use_rep) + " not in adata.obsm")
         return None
 
@@ -116,8 +116,9 @@ def plot_split_embedding(
             if (last_legend_only & (j<(n_factor_levels-1))):
                 try:
                     axs_ij.get_legend().remove()
-                except:
-                    pass
+                except Exception as e:
+                    print(e)
+                    
         del a
     
     return fig
