@@ -70,7 +70,7 @@ def do_gprofiler_analysis(
     
     ora_df = gp.profile(
         organism=organism,
-        query=markers,
+        query=genes,
         no_evidences=False,
         ordered=ordered,
         sources=sources

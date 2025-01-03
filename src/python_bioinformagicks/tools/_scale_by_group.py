@@ -99,7 +99,7 @@ def scale_by_group(
     
     # save memory by converting to sparse matrix
     # if the result was not zero-centered
-    if (zero_center == False):
+    if (zero_center is False):
         ret = scipy.sparse.csr_matrix(ret)
     
     if (copy):

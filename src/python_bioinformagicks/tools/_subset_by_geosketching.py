@@ -50,7 +50,7 @@ def subset_by_geosketching(
     
     n_cells = 0
     
-    if not (n_cells_to_keep is None):
+    if (n_cells_to_keep is not None):
         if ((n_cells_to_keep < len(adata.obs.index)) and (n_cells_to_keep > 0)):
             n_cells = n_cells_to_keep
         else:

@@ -100,7 +100,7 @@ def tf_idf_markers(
 
     # binarize the gene expression data
     if ((redo_threshold) 
-    or not ("binary" in adata.layers.keys())):
+    or ("binary" not in adata.layers.keys())):
         threshold = np.percentile(adata.X.data, 5)
         X = adata.X.copy()
         X.data = np.where(adata.X.data > threshold, 1, 0)
