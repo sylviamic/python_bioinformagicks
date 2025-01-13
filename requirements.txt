@@ -5,7 +5,7 @@ pandas
 scipy
 geosketch
 gprofiler-official
-
+pysam
 
 pytest
 tox

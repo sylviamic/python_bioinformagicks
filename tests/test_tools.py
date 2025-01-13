@@ -2,7 +2,6 @@
 
 import pytest
 
-
 import python_bioinformagicks as bim
 
 
@@ -27,11 +26,6 @@ def test_scale_by_group(
     sample_adata,
     groupby = "celltype"
 ):
-    """
-    
-    Testing bim.tl.scale_by_group.
-
-    """
 
     import numpy as np
     
@@ -51,11 +45,6 @@ def test_subset_by_geosketching(
     frac_cells_to_keep = 0.2,
     n_cells_to_keep = 100,
 ):
-    """
-
-    Testing bim.tl.subset_by_geosketching
-
-    """
 
     import numpy as np
 
@@ -81,11 +70,6 @@ def test_subset_by_geosketching(
 def test_calc_jasmine_score(
     sample_adata,
 ):
-    """
-
-    Testing bim.tl.calc_jasmine_score
-
-    """
     
     import numpy as np
 
@@ -118,11 +102,7 @@ def test_tf_idf_markers(
     n_genes = 10,
     groupby = "celltype"
 ):
-    """
 
-    Testing bim.tl.tf_idf_markers
-
-    """
     markers_dict = bim.tl.tf_idf_markers(
         sample_adata,
         n_genes = n_genes,
@@ -131,3 +111,27 @@ def test_tf_idf_markers(
 
     assert (len(markers_dict.keys()) == len(sample_adata.obs[groupby].unique()))
     assert (len(markers_dict[list(markers_dict.keys())[0]]) == n_genes)
+
+
+def test_call_scSNP(
+    sample_adata,
+    bam_file = "./data/subsample.bam",
+    contig = "14",
+    position = 54962583,
+    alt = "C"
+):
+    
+    barcodes = sample_adata.obs.index.tolist()
+
+    calls, stats = bim.tl.call_scSNP(
+        barcodes,
+        bam_file,
+        contig = "14",
+        position = 54962583,
+        alt = "C",
+        return_stats = True
+    )
+    
+    assert (len(calls) == len(barcodes))
+    assert (sum(calls) > 0)
+    print(stats)

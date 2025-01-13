@@ -60,17 +60,6 @@ def plot_split_embedding(
     if ("cat" not in groupby_col.dtype.name):
         groupby_col = groupby_col.astype("category")
 
-    # determine which plotting function to use
-    # TODO: switch to sc.pl.embedding
-    """
-    plot_func_dict = {
-        "X_umap":    sc.pl.umap,
-        "X_tsne":    sc.pl.tnse,
-        "X_pca":     sc.pl.pca,
-        "X_diffmap": sc.pl.diffmap
-    }
-    """
-
     n_factor_levels = len(groupby_col.cat.categories)
     n_plots_per_factor = len(color)
     plot_size = 4
