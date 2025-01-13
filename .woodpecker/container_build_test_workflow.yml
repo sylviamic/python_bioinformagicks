@@ -13,8 +13,7 @@ steps:
       password:
         from_secret: dockerhub_auth_token
   - name: test
-    image: sylviamic/python_bioinformagicks
-    tags: latest
+    image: sylviamic/python_bioinformagicks:latest
     commands:
       - echo "Testing ..."
       - make test
