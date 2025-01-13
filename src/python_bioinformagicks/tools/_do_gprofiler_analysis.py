@@ -37,7 +37,7 @@ def do_gprofiler_analysis(
         otherwise set to False. A slightly different 
         ORA is performed on ordered gene lists. 
     
-    sources: list of str (default: ["GO\:BP", "GO\:MF", "REAC", "KEGG", "TF"])
+    sources: list of str (default: ["GO\\:BP", "GO\\:MF", "REAC", "KEGG", "TF"])
         The list of source databases to consider for 
         gProfiler ORA. Some may only be available for
         certain organisms; see organism list page in
