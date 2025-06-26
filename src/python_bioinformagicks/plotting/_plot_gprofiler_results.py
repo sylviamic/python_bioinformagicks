@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib
+import matplotlib.pyplot as plt
 
 from natsort import natsorted
 
@@ -62,7 +63,7 @@ def plot_gprofiler_results(
     """
 
     # Determine how many subplots to make and create the axes
-    n_sources = len(ora_df["source"].unqiue())
+    n_sources = len(ora_df["source"].unique())
 
     fig, axs = plt.subplots(n_sources,1, figsize=(10,7*n_sources))
     axs = axs.ravel()
@@ -84,7 +85,7 @@ def plot_gprofiler_results(
         d["FE"] = d["n_in_term"] / (0.05 + d["n_expected_in_term"])
 
         # calculate -log10(p_adj)
-        #gProfiler automatically converts to FDR/p_adj, then re-labels as pvals
+        # gProfiler automatically converts to FDR/p_adj, then re-labels as pvals
         d["FDR"] = d["p_value"] 
         d["-log10(FDR)"] = -1 * np.log10(d["FDR"])
 
@@ -111,7 +112,7 @@ def plot_gprofiler_results(
         color_facet = "FE"
 
         new_cmap = truncate_colormap(
-            matplotlib.cm.get_cmap(cmap),
+            matplotlib.colormaps.get_cmap(cmap),
             minval=0.4,
             maxval=0.9
         )
@@ -155,12 +156,14 @@ def plot_gprofiler_results(
 
         # set the font sizes to something appropriate
         # TODO: is there a better way to parametrize this?
-        for item in ([axs[i].title, axs[i].xaxis.label, axs[i].yaxis.label] 
-                    + axs[i].get_xticklabels()
-                    + axs[i].get_yticklabels()
-                    + [cbar.ax.title, axs[i].xaxis.label, axs[i].yaxis.label]
-                    + cbar.ax.get_xticklabels()
-                    + cbar.ax.get_yticklabels()):
+        for item in (
+            [axs[i].title, axs[i].xaxis.label, axs[i].yaxis.label] 
+            + axs[i].get_xticklabels()
+            + axs[i].get_yticklabels()
+            + [cbar.ax.title, axs[i].xaxis.label, axs[i].yaxis.label]
+            + cbar.ax.get_xticklabels()
+            + cbar.ax.get_yticklabels()
+        ):
             item.set_fontsize(20) 
 
     return fig

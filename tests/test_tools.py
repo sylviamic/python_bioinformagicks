@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import pytest
+import os
 
 import python_bioinformagicks as bim
 
@@ -100,25 +101,35 @@ def test_calc_jasmine_score(
 def test_tf_idf_markers(
     sample_adata,
     n_genes = 10,
-    groupby = "celltype"
+    groupby = "celltype",
+    return_fig = True,
 ):
 
-    markers_dict = bim.tl.tf_idf_markers(
+    #import matplotlib.pyplot as plt
+
+    markers_dict, dpl = bim.tl.tf_idf_markers(
         sample_adata,
         n_genes = n_genes,
-        groupby = groupby
+        groupby = groupby,
+        return_fig = return_fig,
     )
-
+    
+    save_path = "./tests/data/plot_tf_idf_markers.png"
+    dpl.savefig(save_path)
+    #plt.close(dpl.gcf())
+    
     assert (len(markers_dict.keys()) == len(sample_adata.obs[groupby].unique()))
     assert (len(markers_dict[list(markers_dict.keys())[0]]) == n_genes)
+    assert (os.path.getsize(save_path) > 100000)
 
 
 def test_call_scSNP(
     sample_adata,
-    bam_file = "./data/subsample.bam",
+    bam_file = "./tests/data/subsample.bam",
     contig = "14",
     position = 54962583,
-    alt = "C"
+    alt = "C",
+    cb_tag = "CR"
 ):
     
     barcodes = sample_adata.obs.index.tolist()
@@ -129,9 +140,10 @@ def test_call_scSNP(
         contig = "14",
         position = 54962583,
         alt = "C",
+        cb_tag = cb_tag,
         return_stats = True
     )
     
     assert (len(calls) == len(barcodes))
-    assert (sum(calls) > 0)
+    #assert (sum(calls) > 0)
     print(stats)

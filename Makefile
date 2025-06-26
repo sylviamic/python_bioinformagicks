@@ -88,3 +88,6 @@ install: clean ## install the package to the active Python's site-packages
 
 install-ci: clean ## install the package to the active Python's site-packages
 	pip install --index-url http://devpi-server:3141/root/pypi --trusted-host devpi-server --no-cache-dir -e .
+
+install-local: clean ## install the package to the active Python's site-packages
+	pip install --index-url http://10.0.0.1:3141/root/pypi --trusted-host 10.0.0.1 -e .

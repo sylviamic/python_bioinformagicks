@@ -1,11 +1,13 @@
-from gprofiler import GProfiler
+import requests
+import pandas as pd
 
 def do_gprofiler_analysis(
     genes: list[str], 
     organism: str = "hsapiens",
     max_term_size: int = 10000,
     ordered: bool = False,
-    sources: list[str] = ["GO:BP", "GO:MF", "REAC", "KEGG", "TF"]
+    sources: list[str] = ["GO:BP", "GO:MF", "REAC", "KEGG", "TF"],
+    highlight: bool = True,
 ):
     """
     Given an ordered list of genes,
@@ -43,7 +45,13 @@ def do_gprofiler_analysis(
         certain organisms; see organism list page in
         the gProfiler documentation for more
         information.
-    
+
+    highlight: bool (default: False)
+        If True, request that gProfiler add a 'highlighted'
+        column to the resulting dataframe indicating if a 
+        given term is a 'driver' term.
+        See: https://biit.cs.ut.ee/gprofiler/page/docs#highlight_go    
+
     Returns
     -------
     ora_df: pandas.DataFrame
@@ -65,17 +73,24 @@ def do_gprofiler_analysis(
     0   REAC  Surfactant metabolism  0.000033  [SFTPC, NAPSA, SFTPB]
 
     """
-    
-    gp = GProfiler(return_dataframe=True)
-    
-    ora_df = gp.profile(
-        organism=organism,
-        query=genes,
-        no_evidences=False,
-        ordered=ordered,
-        sources=sources
+
+    res = requests.post(
+        url = "https://biit.cs.ut.ee/gprofiler/api/gost/profile/",
+        json = {
+            "organism": organism,
+            "query": genes,
+            "sources": sources,
+            "highlight": highlight,
+            "ordered": ordered,
+            "no_evidences": True, 
+            "no_iea": False,
+        },
+        headers = {
+        "User-Agent": "FullPythonRequest"
+        }
     )
-    
+    ora_df = pd.DataFrame.from_dict(res.json()['result'])
+
     if (max_term_size) & (max_term_size > 0):
         ora_df = ora_df[ora_df["term_size"] < max_term_size]
     

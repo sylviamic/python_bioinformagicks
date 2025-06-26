@@ -8,7 +8,8 @@ def call_scSNP(
     position: int,
     alt: str,
     threshold: int = 9,
-    return_stats: bool = False
+    cb_tag: str = "CB",
+    return_stats: bool = False,
 ): 
     '''
     With a list of valid cell barcodes as reference,
@@ -16,10 +17,6 @@ def call_scSNP(
     genomic position and perform variant calling
     at that position for each cell.
     
-    BAM file must be annotated with the `CB` tag
-    from STARsolo (or cellranger), which stores 
-    corrected cell barcodes. 
-
     This function is crude and useful only for single 
     point mutation calling, i.e. "I know there is a 
     mutation this position; tell me which cells have it."
@@ -58,6 +55,11 @@ def call_scSNP(
         If `#reads(ALT) < (threshold/3)`, call WT.
         Else, call alt allele.
     
+    cb_tag: str (default: "CB")
+        The tag in the BAM file that stores the
+        (corrected) cell barcodes. Usually one of
+        ["CB", "CR"].
+
     return_stats: bool (default: False)
         If True, return dictionary of variant calling 
         statistics, including per-cell allele frequencies.
@@ -110,7 +112,7 @@ def call_scSNP(
         read_dict[barcode] = []
 
     for read in reads_in_region:
-        barcode = read.get_tag("CB")
+        barcode = read.get_tag(cb_tag)
         if (barcode in read_dict.keys()):
             seq = read.get_forward_sequence()
             # only insert the single nucleotide of interest

@@ -15,6 +15,7 @@ Tools:
 * Cell mask generation based on geometric sketching, as in Geosketch_
 * Cell mask generation based on embedding (i.e. UMAP) coordinate bounds
 * Z-standard scaling of gene expression on a per-group basis
+* Basic single-cell variant calling for single point mutations
 
 Plotting:
 
