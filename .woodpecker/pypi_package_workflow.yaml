@@ -4,7 +4,7 @@ when:
 
 steps:
   - name: package
-    image: sylviamic/python_bioinformagicks
+    image: sylviamic/python_bioinformagicks:latest
     environment:
       PYPI_API_KEY: 
         from_secret: pypi_api_key

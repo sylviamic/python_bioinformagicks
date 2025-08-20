@@ -74,6 +74,11 @@ def do_gprofiler_analysis(
 
     """
 
+    # check if this is an ordered query; if it is, gProfiler
+    # API cannot perform highlighting (interesting)
+    if (ordered and highlight):
+        highlight = False
+
     res = requests.post(
         url = "https://biit.cs.ut.ee/gprofiler/api/gost/profile/",
         json = {
@@ -86,7 +91,7 @@ def do_gprofiler_analysis(
             "no_iea": False,
         },
         headers = {
-        "User-Agent": "FullPythonRequest"
+            "User-Agent": "FullPythonRequest"
         }
     )
     ora_df = pd.DataFrame.from_dict(res.json()['result'])
