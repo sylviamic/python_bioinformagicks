@@ -74,8 +74,9 @@ def plot_grouped_proportions(
     
     fig, axs = plt.subplots(
         1,2,
-        figsize=(10,5),
-        constrained_layout=True
+        figsize = (10,5),
+        constrained_layout = True,
+        squeeze = True
     )
     
     for i in range(0, len(titles)):
@@ -83,7 +84,7 @@ def plot_grouped_proportions(
         # calculate counts/proportions
         if ("#" in titles[i]):
             return_counts = True
-            n_samples = obs.groupby(split_by)[batch_key].nunique()
+            n_samples = obs.groupby(split_by, observed=True)[batch_key].nunique()
             n_samples = np.asarray(n_samples)
         else:
             return_counts = False

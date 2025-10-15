@@ -183,7 +183,7 @@ def tf_idf_markers(
         genes = df.index.tolist()
         genes_idx = [adata[:, gene_mask].var.index.get_loc(g) for g in genes]
         top_genes[c] = genes
-        top_adjusted_pvals[c]  = adjusted_pvals[c][genes_idx]
+        top_adjusted_pvals[c]  = adjusted_pvals[c].iloc[genes_idx]
     
     if (n_genes_to_plot > 0):
         if (0 < n_genes_to_plot < n_genes):

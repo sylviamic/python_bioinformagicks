@@ -43,12 +43,13 @@ def plot_gprofiler_results(
         fold enrichment (FE)
     
     sort_by: str (default: 'fold_enrichment')
+        One of `(FE, FDR)`.
         Sort the statistically significant terms by
         term fold enrichment (FE), i.e. 
         `(n_in_term/n_expected_in_term)`
         before cutting off to top n_terms. 
         If `FDR`, sort instead by statistical
-        significance alone.
+        significance before cutting off.
     
     min_FE: uint (default: 0)
         Ignore terms if their term fold enrichment
@@ -65,8 +66,11 @@ def plot_gprofiler_results(
     # Determine how many subplots to make and create the axes
     n_sources = len(ora_df["source"].unique())
 
-    fig, axs = plt.subplots(n_sources,1, figsize=(10,7*n_sources))
-    axs = axs.ravel()
+    fig, axs = plt.subplots(
+        n_sources,1, 
+        figsize = (10,7*n_sources), 
+        squeeze = True
+    )
 
 
     for i,source in enumerate(natsorted(ora_df["source"].unique())):
@@ -100,9 +104,9 @@ def plot_gprofiler_results(
         df = d[d["FE"] >= min_FE]
 
         # sort before cutting to top n_terms
-        if (sort_by == "fold_enrichment"):
+        if (sort_by in ["fold_enrichment", "FE"]):
             df = df.sort_values("FE", ascending=False)
-        elif (sort_by == "FDR"):
+        elif (sort_by in ["false_discovery_rate", "pval", "FDR"]):
             df = df.sort_values("FDR", ascending=True)
         
         data = df.head(n_terms)
