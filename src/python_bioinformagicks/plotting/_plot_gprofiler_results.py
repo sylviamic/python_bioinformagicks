@@ -72,6 +72,11 @@ def plot_gprofiler_results(
         squeeze = True
     )
 
+    if (n_sources == 0):
+        print("No ORA result sources (GO:BP, GO:MF, ...) in dataframe.")
+        return None
+    if (n_sources == 1):
+        axs = [axs]
 
     for i,source in enumerate(natsorted(ora_df["source"].unique())):
         # filter to just this source

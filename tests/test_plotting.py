@@ -84,12 +84,13 @@ def test_plot_split_embedding(
     assert (os.path.getsize(save_path) > 100000)
 
 
+
 def test_plot_gprofiler_results(
     genes = [
         "Acta2", "Tagln", "Myh10", "Actc1", "Ttn",
         "Stc1", "Col1a1", "Pdgfra", "Hhip", "Obscn"
     ],
-    sources = ["GO:BP", "GO:MF"],
+    sources = ["GO:BP"],
     highlight = True, 
     organism = "mmusculus",
     ordered = False,
@@ -132,4 +133,4 @@ def test_plot_gprofiler_results(
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
 
-    assert (os.path.getsize(save_path) > 100000)
+    assert (os.path.getsize(save_path) > 50000)
