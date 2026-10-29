@@ -48,7 +48,7 @@ def in_ignore_list(g: str):
         "HBA", "Hba", "HBB", "Hbb", "LINC", "Lnc",
         "RP11", "Rp11", "-AS", "LOC", "n-R5", "-mir",
         "snopsi", "AC0", "XXbac", "Trn", "-DT"
-        "-ps", "-ps1", "-ps2", 
+        "-ps", "-ps1", "-ps2", "-Ps",
         "ROSA", "Gt(ROSA)26Sor"
     ]
     

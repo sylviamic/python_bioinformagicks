@@ -5,6 +5,7 @@ when:
 steps:
   - name: package
     image: sylviamic/python_bioinformagicks:latest
+    pull: true
     environment:
       PYPI_API_KEY: 
         from_secret: pypi_api_key

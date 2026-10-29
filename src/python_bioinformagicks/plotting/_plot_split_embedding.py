@@ -8,7 +8,9 @@ def plot_split_embedding(
     groupby: str, 
     color: list[str] | str, 
     use_rep: str = "X_umap",
-    last_legend_only: bool = True, 
+    last_legend_only: bool = True,
+    vmin: float = None,
+    vmax: float = None, 
     **kwargs
 ):
     """
@@ -83,12 +85,22 @@ def plot_split_embedding(
             if (len(title) > max_title_len):
                 title = title[0:max_title_len] + "..."
             
+            try:
+                if (vmin is None):
+                    vmin = np.min(adata.obs_vector(x))
+                if (vmax is None):
+                    vmax = np.max(adata.obs_vector(x))
+            except Exception as e:
+                pass
+
             sc.pl.embedding(
                 adata, 
                 basis=use_rep,
                 ax=axs_ij,
                 show=False,
                 na_color="#f0f0f0",
+                vmin=vmin,
+                vmax=vmax,
                 **kwargs
             )
             sc.pl.embedding(
@@ -98,15 +110,17 @@ def plot_split_embedding(
                 ax=axs_ij, 
                 show=False,
                 title=title, 
+                vmin=vmin,
+                vmax=vmax,
                 **kwargs
             )
-            axs_ij.title.set_fontsize(8)
+            axs_ij.title.set_fontsize(10)
             
             if (last_legend_only & (j<(n_factor_levels-1))):
                 try:
                     axs_ij.get_legend().remove()
                 except Exception as e:
-                    print(e)
+                    pass
                     
         del a
     
